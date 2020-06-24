@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "vs-graph"
+version = "0.1.0"
+description = "A small tool for visualizing concept graphs us Google search"
+authors = ["tomNummy <tom.nummy@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+black = "==19.10b0"
+flake8 = "*"
+isort = "*"
+mypy = "*"
+pytest = "*"
+pytest-cov = "*"
