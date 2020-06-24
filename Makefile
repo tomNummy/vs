@@ -5,7 +5,7 @@ test:
 .PHONY: lint
 lint:
 	mypy .
-	flake8 .
+	flake8 --extend-exclude=.venv .
 	black --check .
 	isort --recursive --check-only --diff .
 
