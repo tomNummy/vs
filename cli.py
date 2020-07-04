@@ -3,6 +3,7 @@ import re
 import click
 
 from graph import build_graph
+from plot import build_plot
 
 
 def get_valid_filename(s):
@@ -28,7 +29,6 @@ def get_valid_filename(s):
     default=3,
 )
 @click.option("--fpath", "-f", type=click.Path(), required=False, default=None)
-@click.pass_context
 def vs_graph(term, radius, fpath):
     """Build a neighborhood graph of the search term
 
@@ -41,4 +41,6 @@ def vs_graph(term, radius, fpath):
 
     if not fpath:
         fpath = get_valid_filename(term) + ".html"
-    g = build_graph()
+    g = build_graph(term)
+    breakpoint()
+    build_plot(term, g, fpath)
