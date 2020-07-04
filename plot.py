@@ -30,18 +30,21 @@ def build_plot(term: str, g: nx.Graph, fpath: Optional[str] = None):
     )
     plot.title.text = f""""{term}" google vs. graph"""
 
-    plot.add_tools(HoverTool(tooltips=None), TapTool(), BoxSelectTool())
+    plot.add_tools(TapTool(), BoxSelectTool())
 
     graph_renderer = from_networkx(g, nx.spring_layout, scale=1, center=(0, 0))
 
-    graph_renderer.node_renderer.glyph = Circle(size=15, fill_color=Spectral4[0])
+    graph_renderer.node_renderer.glyph = Circle(
+        size="total_weight",
+        fill_color=Spectral4[0]
+    )
     graph_renderer.node_renderer.selection_glyph = Circle(
         size=15, fill_color=Spectral4[2]
     )
     graph_renderer.node_renderer.hover_glyph = Circle(size=15, fill_color=Spectral4[1])
 
     graph_renderer.edge_renderer.glyph = MultiLine(
-        line_color="#CCCCCC", line_alpha=0.8, line_width=5
+        line_color="#CCCCCC", line_alpha=0.8, line_width="weight"
     )
     graph_renderer.edge_renderer.selection_glyph = MultiLine(
         line_color=Spectral4[2], line_width=5
@@ -50,7 +53,7 @@ def build_plot(term: str, g: nx.Graph, fpath: Optional[str] = None):
         line_color=Spectral4[1], line_width=5
     )
 
-    graph_renderer.selection_policy = NodesOnly()
+    graph_renderer.selection_policy = NodesAndLinkedEdges()
     graph_renderer.inspection_policy = NodesAndLinkedEdges()
 
     plot.renderers.append(graph_renderer)
@@ -62,3 +65,4 @@ def build_plot(term: str, g: nx.Graph, fpath: Optional[str] = None):
     if not fpath:
         fpath = f"vs_graph_{term.replace(' ', '_').replace('/', '-')}.html"
     output_file(fpath)
+    show(plot)

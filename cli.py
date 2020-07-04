@@ -28,8 +28,13 @@ def get_valid_filename(s):
     required=False,
     default=3,
 )
+@click.option(
+    "--trim-leaves",
+    "-t",
+    is_flag=True
+)
 @click.option("--fpath", "-f", type=click.Path(), required=False, default=None)
-def vs_graph(term, radius, fpath):
+def vs_graph(term, radius, fpath, trim_leaves=False):
     """Build a neighborhood graph of the search term
 
     \b
@@ -41,6 +46,5 @@ def vs_graph(term, radius, fpath):
 
     if not fpath:
         fpath = get_valid_filename(term) + ".html"
-    g = build_graph(term)
-    breakpoint()
+    g = build_graph(term, radius=radius, trim_leaves=trim_leaves)
     build_plot(term, g, fpath)
