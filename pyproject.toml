@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "vs-graph"
+name = "vs_graph"
 version = "0.1.0"
 description = "A small tool for visualizing concept graphs us Google search"
 authors = ["tomNummy <tom.nummy@gmail.com>"]

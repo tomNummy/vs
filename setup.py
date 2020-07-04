@@ -1,7 +1,7 @@
 from setuptools import find_packages, setup
 
 setup(
-    name="vs-graph",
+    name="vs_graph",
     author="tomNummy",
     author_email="tom.nummy@gmail.com",
     description="A small tool for visualizing concept graphs us Google search",
